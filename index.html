@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <meta charset="utf-8">
+    <title>Vacation Choice</title>
+  </head>
+  <body>
+    <div class="container">
+      <h5>Movie Tickets</h5>
+      <form id="movie-form">
+        <div class="new-ticket">
+        <div class="form-group">
+          <label for="movie">Select Movie</label>
+          <select id="movie" class="custom-select">
+           <option selected>select one</option>
+           <option>Wonder Woman</option>
+           <option>Iron Man</option>
+           <option>Despicable Three</option>
+         </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="age">Input your age</label>
+          <input id="age">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="time">Select Show Time</label>
+          <select id="time" class="custom-select">
+            <option selected>select one</option>
+            <option>Matinee</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+          </select>
+        </div>
+        </div>
+         <span class="btn btn-primary" id="add-ticket">Another ticket?</span>
+
+        <button id="btn-red" type="submit" class="btn btn-danger btn-large">Get Your Ticket</button>
+        </form>
+      </div>
+    </body>
+  </html>
