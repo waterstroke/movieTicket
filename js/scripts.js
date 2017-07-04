@@ -40,16 +40,16 @@ $(document).ready(function() {
 });
   $("form#movie-form").submit(function(event) {
 
-  var movie = $("select#movie").val();
-  var time = $("select#time").val();
-  var age = parseInt($("input#age").val();
-  var newTicket = new Ticket(age, movie, time);
+  // var movie = $("select#movie").val();
+  // var time = $("select#time").val();
+  // var age = parseInt($("input#age").val();
+  // var newTicket = new Ticket(age, movie, time);
 
 
   $(".new-ticket").each(function() {
-     var additionalAge = $(this).find("input#age").val();
-     var additionalMovie = $(this).find("select#movie").val();
-     var additionalTime = $(this).find("select#time").val();
+     var Age = $(this).find("input#age").val();
+     var Movie = $(this).find("select#movie").val();
+     var Time = $(this).find("select#time").val();
      var newTicket = new Ticket(additionalAge, additionalMovie, additionalTime);
      multipleTickets.push(newTicket);
    });
