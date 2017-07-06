@@ -2,21 +2,23 @@ var Ticket = function(age, movie, time) {
   this.age = age;
   this.movie = movie;
   this.time = time;
-}
-var multipleTickets = [];
+  this.price = "0";
+};
 
+var multipleTickets = [];
 
 Ticket.prototype.ticketPrice = function() {
 
     if(this.age < 12 || this.age >= 65 || this.time === "Matinee") {
-      var discount = "6.00"
-      multipleTickets.push(discount);
+      var discount = "6.00";
+      this.price = discount;
     } else {
       var discount = "$12.00";
-      multipleTickets.push(discount); //Do I need another array within an array.
+      this.price = discount;
     }
+
     return (this.movie + ", playing at " + this.time + ", costs " + discount);
-  }
+  };
 
 
 $(document).ready(function() {
@@ -49,38 +51,44 @@ $(document).ready(function() {
 
   $("form#movie-form").submit(function(event) {
 
-    var totals = ticketPrice();
-    var newTicket = new Ticket(age, movie, time);
+    event.preventDefault();
 
     $(".new-ticket").each(function() {
        var age = $(this).find("input#age").val();
        var movie = $(this).find("select#movie").val();
        var time = $(this).find("select#time").val();
+       var newTicket = new Ticket(age, movie, time);
+       newTicket.ticketPrice()
        multipleTickets.push(newTicket);
      });
+     for (var i = 0; i < multipleTickets.length; i++ ) {
+       var newTicket = multipleTickets[i];
+       $('#show-tickets ul').append('<li class="ticket">' + multipleTickets[i].movie + '</li>');
+     };
+     $("#show-tickets").show();
 
      $(".ticket").last().click(function() {
-      $("#show-ticket").show();
       $(".movie").text(newTicket.movie);// Movie
       $(".time").text(newTicket.time);//TIME
       $(".age").text(newTicket.age);//TIME
-      $(".price").text(totals);//Price
-      $("ul#multipleTickets").text("");//more than 1
-      newTicket.forEach(function(ticket) {
-        $("ul#multipleTickets").append("<li>" + ticket.movie + ", " + ticket.time + " " + ticket.age + ", " + totals + "</li>");
-      });
+      $(".price").text(newTicket.price);//Price
+      // $("ul#multipleTickets").text("");//more than 1
+      // newTicket.forEach(function(ticket) {
+      //   $("ul#show-tickets").append("<ul>" + ticket.movie + ", " + ticket.time + " " + ticket.age + ", " + totals + "</ul>");
+      // });
     });
-    // for (var i = 1; i < ticketPrice.length; i++ ) {
-    //       $('#list').append('<li>' + ticketPrice[i] + '</li>');
-    //     };
+
     $("input#age").val("");
     $("select#movie").val("");
     $("select#time").val("");
 
-    console.log(newTicket.ticketPrice());
+
+
+    console.log(multipleTickets);
 
   });
 });
+
 
 
 // var movie = $("select#movie").val();
